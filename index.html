@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞東醫院 放射治療衛教網站</title>
+<style>
+/* ============================================================
+   色彩計畫：湖水綠 × 柔和藍 × 米白 × 淡木色
+============================================================ */
+:root{
+  --cream:#FAF7F1;        /* 米白底 */
+  --cream-2:#F3EEE5;      /* 淡木色 */
+  --teal:#3E9286;         /* 湖水綠（主色） */
+  --teal-dark:#2E7268;
+  --teal-light:#E0F1ED;   /* 湖水綠淺底 */
+  --blue:#5B96C8;         /* 柔和藍 */
+  --blue-dark:#3F76A6;
+  --blue-light:#E7F0F8;   /* 柔和藍淺底 */
+  --wood:#C9B299;         /* 淡木色深 */
+  --wood-light:#F0E7DA;
+  --ink:#2F3E3E;          /* 主文字（深墨綠灰，高對比） */
+  --ink-soft:#5A6B6B;     /* 次文字 */
+  --coral:#D9776A;        /* 提醒色 */
+  --coral-light:#FBEAE6;
+  --red:#C0453A;          /* 警示 */
+  --red-light:#F9E3E0;
+  --amber:#C98F3D;
+  --amber-light:#F8EFDE;
+  --radius:22px;
+  --shadow:0 4px 20px rgba(62,118,108,.10);
+  --font:'Microsoft JhengHei','PingFang TC','Noto Sans TC',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--cream);color:var(--ink);
+  font-family:var(--font);font-size:20px;line-height:1.75;
+}
+img{max-width:100%;display:block;}
+
+/* ============================================================
+   頂欄
+============================================================ */
+header{
+  position:sticky;top:0;z-index:900;
+  background:rgba(250,247,241,.95);backdrop-filter:blur(10px);
+  border-bottom:1px solid #E5DCCB;
+  display:flex;align-items:center;gap:16px;
+  padding:10px 22px;
+}
+header .logo{height:46px;cursor:pointer;}
+header .site-name{font-size:20px;font-weight:700;color:var(--teal-dark);}
+header .home-btn{
+  margin-left:auto;background:var(--teal);color:#fff;border:none;
+  font-family:var(--font);font-size:18px;font-weight:700;
+  padding:10px 22px;border-radius:30px;cursor:pointer;transition:.2s;
+}
+header .home-btn:hover{background:var(--teal-dark);}
+
+/* ============================================================
+   版面：側邊欄 + 內容
+============================================================ */
+.layout{display:flex;max-width:1400px;margin:0 auto;}
+aside{
+  width:270px;min-width:270px;
+  padding:28px 14px 40px 22px;
+  position:sticky;top:67px;height:calc(100vh - 67px);
+  overflow-y:auto;
+}
+aside .menu-title{font-size:16px;color:var(--ink-soft);letter-spacing:.15em;margin:4px 0 12px 12px;}
+aside a{
+  display:flex;align-items:center;gap:10px;
+  padding:13px 16px;margin-bottom:6px;border-radius:14px;
+  font-size:19px;font-weight:600;color:var(--ink);
+  text-decoration:none;cursor:pointer;transition:.15s;
+}
+aside a:hover{background:var(--teal-light);}
+aside a.active{background:var(--teal);color:#fff;}
+aside a .num{
+  width:30px;height:30px;min-width:30px;border-radius:50%;
+  background:var(--cream-2);color:var(--teal-dark);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;
+}
+aside a.active .num{background:rgba(255,255,255,.25);color:#fff;}
+aside .sub{margin:2px 0 10px 0;}
+aside .sub a{font-size:16.5px;font-weight:500;padding:7px 14px 7px 56px;color:var(--ink-soft);}
+aside .sub a:hover{color:var(--teal-dark);background:var(--teal-light);}
+
+main{flex:1;padding:36px 40px 30px;min-width:0;}
+
+/* ============================================================
+   頁面顯示控制
+============================================================ */
+.page{display:none;}
+.page.show{display:block;animation:fadein .35s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+/* ============================================================
+   首頁
+============================================================ */
+.hero{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  background:linear-gradient(120deg,var(--teal-light) 0%,var(--blue-light) 100%);
+  display:flex;align-items:center;gap:30px;
+  padding:48px 52px;margin-bottom:34px;flex-wrap:wrap;
+}
+.hero .hero-text{flex:1;min-width:300px;}
+.hero h1{font-size:58px;line-height:1.25;color:var(--teal-dark);margin-bottom:16px;}
+.hero p{font-size:22px;color:var(--ink-soft);}
+.hero .hero-img{
+  flex:0 0 380px;max-width:42%;border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);
+}
+.home-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+}
+.home-card{
+  background:#fff;border-radius:var(--radius);padding:30px 26px;
+  box-shadow:var(--shadow);cursor:pointer;transition:.22s;
+  border:2px solid transparent;
+}
+.home-card:hover{transform:translateY(-6px);border-color:var(--teal);}
+.home-card .hc-icon{
+  width:64px;height:64px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:34px;margin-bottom:16px;
+}
+.home-card h3{font-size:24px;margin-bottom:8px;color:var(--ink);}
+.home-card p{font-size:18px;color:var(--ink-soft);}
+.home-card .hc-go{margin-top:14px;font-size:17px;font-weight:700;color:var(--teal);}
+
+/* ============================================================
+   內容頁元件
+============================================================ */
+.page-head{
+  background:linear-gradient(120deg,var(--teal-light),var(--blue-light));
+  border-radius:var(--radius);padding:36px 42px;margin-bottom:30px;
+}
+.page-head .crumb{font-size:17px;color:var(--teal-dark);font-weight:700;margin-bottom:6px;}
+.page-head h1{font-size:42px;color:var(--teal-dark);line-height:1.3;}
+.page-head p{font-size:22px;color:var(--ink-soft);margin-top:8px;}
+
+section.block{margin-bottom:38px;scroll-margin-top:90px;}
+.block h2{
+  font-size:30px;color:var(--teal-dark);margin-bottom:18px;
+  display:flex;align-items:center;gap:12px;
+}
+.block h2 .dot{width:14px;height:14px;min-width:14px;border-radius:50%;background:var(--teal);}
+
+.card{
+  background:#fff;border-radius:var(--radius);
+  padding:28px 32px;box-shadow:var(--shadow);margin-bottom:20px;
+}
+.card h3{font-size:24px;color:var(--blue-dark);margin-bottom:10px;}
+.card p{font-size:20px;margin-bottom:8px;}
+.card ul{padding-left:6px;list-style:none;}
+.card ul li{
+  font-size:20px;padding:7px 0 7px 36px;position:relative;
+}
+.card ul li::before{
+  content:'';position:absolute;left:8px;top:19px;
+  width:11px;height:11px;border-radius:50%;background:var(--teal);
+}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+
+/* 提示框 */
+.note{
+  border-radius:18px;padding:20px 26px;margin:16px 0;
+  font-size:20px;display:flex;gap:14px;align-items:flex-start;
+}
+.note .ico{font-size:26px;line-height:1.4;}
+.note.green{background:var(--teal-light);border-left:6px solid var(--teal);}
+.note.blue{background:var(--blue-light);border-left:6px solid var(--blue);}
+.note.coral{background:var(--coral-light);border-left:6px solid var(--coral);}
+.note.red{background:var(--red-light);border-left:6px solid var(--red);}
+.note.amber{background:var(--amber-light);border-left:6px solid var(--amber);}
+.note strong{color:var(--ink);}
+
+/* 數據卡 */
+.stats{display:flex;gap:20px;flex-wrap:wrap;margin:18px 0;}
+.stat{
+  flex:1;min-width:170px;background:#fff;border-radius:var(--radius);
+  box-shadow:var(--shadow);text-align:center;padding:26px 18px;
+}
+.stat .n{font-size:46px;font-weight:800;color:var(--teal);line-height:1.2;}
+.stat .l{font-size:19px;color:var(--ink-soft);margin-top:6px;}
+
+/* 表格 */
+.tbl-wrap{overflow-x:auto;border-radius:var(--radius);box-shadow:var(--shadow);margin:16px 0;}
+table.tbl{width:100%;border-collapse:collapse;background:#fff;font-size:20px;}
+table.tbl th{
+  background:var(--teal);color:#fff;font-size:20px;
+  padding:16px 18px;text-align:left;white-space:nowrap;
+}
+table.tbl td{padding:15px 18px;border-bottom:1px solid #EFE9DD;vertical-align:top;}
+table.tbl tr:last-child td{border-bottom:none;}
+table.tbl tr:nth-child(even) td{background:#FBF9F4;}
+.ok{color:var(--teal-dark);font-weight:700;}
+.warn{color:var(--amber);font-weight:700;}
+.no{color:var(--red);font-weight:700;}
+
+/* 圖片卡 */
+.figure{
+  background:#fff;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);margin:16px 0;
+}
+.figure img{width:100%;cursor:zoom-in;}
+.figure figcaption{
+  font-size:18px;color:var(--ink-soft);padding:14px 22px;
+  background:var(--wood-light);
+}
+.fig-row{display:grid;gap:20px;margin:16px 0;}
+.fig-row.c2{grid-template-columns:1fr 1fr;}
+.fig-row.c3{grid-template-columns:repeat(3,1fr);}
+.fig-row .figure{margin:0;}
+.fig-row .figure img{height:240px;object-fit:cover;}
+
+/* 標籤 */
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
+.tag{
+  background:var(--blue-light);color:var(--blue-dark);
+  font-size:19px;font-weight:600;padding:8px 20px;border-radius:30px;
+}
+
+/* 步驟卡 */
+.step-label{
+  display:inline-block;background:var(--blue);color:#fff;
+  font-size:19px;font-weight:800;padding:6px 20px;border-radius:30px;
+  margin-bottom:10px;
+}
+
+/* 部位副作用卡 */
+.se-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.se-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;}
+.se-card h4{font-size:22px;margin-bottom:10px;}
+.se-card ul{list-style:none;}
+.se-card ul li{font-size:19px;padding:4px 0 4px 26px;position:relative;}
+.se-card ul li::before{
+  content:'';position:absolute;left:4px;top:15px;
+  width:9px;height:9px;border-radius:50%;background:var(--blue);
+}
+.se-card .chronic{
+  margin-top:12px;padding-top:12px;border-top:2px dashed var(--cream-2);
+  font-size:17.5px;color:var(--ink-soft);
+}
+
+/* 產品卡 */
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
+.prod-card{
+  background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
+  overflow:hidden;display:flex;flex-direction:column;
+}
+.prod-card .pimg{height:190px;background:#fff;display:flex;align-items:center;justify-content:center;padding:14px;}
+.prod-card .pimg img{max-height:100%;width:auto;max-width:100%;cursor:zoom-in;object-fit:contain;}
+.prod-card .pbody{padding:16px 20px 20px;background:var(--wood-light);flex:1;}
+.prod-card .ptype{
+  display:inline-block;font-size:15px;font-weight:700;color:#fff;
+  background:var(--wood);border-radius:20px;padding:3px 14px;margin-bottom:6px;
+}
+.prod-card h4{font-size:20px;margin-bottom:4px;}
+.prod-card p{font-size:17px;color:var(--ink-soft);line-height:1.6;}
+
+/* 上一頁/下一頁 */
+.page-nav{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  margin-top:44px;padding-top:26px;border-top:2px solid var(--cream-2);
+  flex-wrap:wrap;
+}
+.pn-btn{
+  background:#fff;border:2px solid var(--teal);color:var(--teal-dark);
+  font-family:var(--font);font-size:19px;font-weight:700;
+  padding:14px 26px;border-radius:30px;cursor:pointer;transition:.2s;
+}
+.pn-btn:hover{background:var(--teal);color:#fff;}
+.pn-btn.home{border-color:var(--wood);color:var(--ink-soft);}
+.pn-btn.home:hover{background:var(--wood);color:#fff;}
+
+/* 融合示意圖 */
+.fusion-diagram{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  padding:26px 18px;background:#fff;flex-wrap:wrap;
+}
+.fusion-diagram .fd-item{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.fusion-diagram .fd-item img{width:240px;border-radius:10px;cursor:zoom-in;}
+.fusion-diagram .fd-item img.fd-big{width:340px;}
+.fusion-diagram .fd-item span{font-size:16.5px;font-weight:700;color:var(--ink);}
+.fusion-diagram .fd-stack{display:flex;flex-direction:column;gap:12px;}
+.fusion-diagram .fd-arrow{
+  display:flex;flex-direction:column;align-items:center;
+  font-size:34px;color:var(--teal);font-weight:800;
+}
+.fusion-diagram .fd-arrow small{font-size:16px;color:var(--ink-soft);font-weight:700;}
+
+/* 特殊標記 */
+.badge-special{
+  display:inline-block;margin-left:12px;
+  background:linear-gradient(120deg,#F5C842,#E89B4A);color:#fff;
+  font-size:16px;font-weight:800;padding:5px 16px;border-radius:20px;
+  vertical-align:middle;box-shadow:0 3px 10px rgba(232,155,74,.35);
+  letter-spacing:.05em;
+}
+
+/* 子頁面連結卡 */
+.link-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.link-card{
+  background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:28px 24px;cursor:pointer;transition:.2s;border:2px solid transparent;
+  text-align:center;
+}
+.link-card:hover{transform:translateY(-5px);border-color:var(--teal);}
+.link-card .lc-icon{font-size:42px;margin-bottom:8px;}
+.link-card h3{font-size:24px;color:var(--ink);margin-bottom:6px;}
+.link-card p{font-size:17.5px;color:var(--ink-soft);}
+.link-card .lc-go{margin-top:12px;font-size:17px;font-weight:700;color:var(--teal);}
+@media (max-width:980px){
+  .link-cards{grid-template-columns:1fr;}
+  .fusion-diagram .fd-arrow{transform:rotate(90deg);}
+}
+
+/* 燈箱 */
+#lightbox{
+  display:none;position:fixed;inset:0;z-index:2000;
+  background:rgba(40,50,50,.88);
+  align-items:center;justify-content:center;padding:30px;cursor:zoom-out;
+}
+#lightbox.on{display:flex;}
+#lightbox img{max-width:96%;max-height:94vh;border-radius:14px;background:#fff;}
+
+/* 行動裝置 */
+#m-nav-toggle{display:none;}
+@media (max-width:980px){
+  aside{
+    position:fixed;left:0;top:67px;bottom:0;background:var(--cream);
+    z-index:950;transform:translateX(-105%);transition:.25s;
+    box-shadow:4px 0 24px rgba(0,0,0,.12);height:auto;
+  }
+  aside.open{transform:none;}
+  #m-nav-toggle{
+    display:block;background:var(--blue);color:#fff;border:none;
+    font-family:var(--font);font-size:18px;font-weight:700;
+    padding:10px 18px;border-radius:30px;cursor:pointer;
+  }
+  main{padding:24px 18px;}
+  .home-grid{grid-template-columns:1fr;}
+  .two-col,.three-col,.se-grid{grid-template-columns:1fr;}
+  .fig-row.c2,.fig-row.c3{grid-template-columns:1fr;}
+  .hero{padding:30px 24px;}
+  .hero h1{font-size:34px;}
+  .hero .hero-img{max-width:100%;flex-basis:100%;}
+  .page-head h1{font-size:32px;}
+  body{font-size:20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ 頂欄 ════════ -->
+<header>
+  <img class="logo" src="assets/logo.png" alt="亞東紀念醫院" onclick="go('home')">
+  <span class="site-name">放射腫瘤科・治療流程與介紹</span>
+  <button id="m-nav-toggle" onclick="document.querySelector('aside').classList.toggle('open')">☰ 目錄</button>
+  <button class="home-btn" onclick="go('home')">🏠 回首頁</button>
+</header>
+
+<div class="layout">
+
+<!-- ════════ 側邊欄 ════════ -->
+<aside id="sidebar">
+  <a data-nav="intro" onclick="go('intro')"><span class="num">1</span>什麼是放射治療？</a>
+  <a data-nav="prep" onclick="go('prep')"><span class="num">2</span>準備流程</a>
+  <div class="sub" data-sub="prep">
+    <a onclick="go('prep','#prep-s1')">Step 1 門診評估</a>
+    <a onclick="go('prep','#prep-s2')">Step 2 定位掃描</a>
+    <a onclick="go('prep','#prep-s3')">Step 3 計畫設計</a>
+    <a onclick="go('prep','#prep-note')">注意事項</a>
+  </div>
+  <a data-nav="course" onclick="go('course')"><span class="num">3</span>療程介紹</a>
+  <div class="sub" data-sub="course">
+    <a onclick="go('course-cur')">根治性療程</a>
+    <a onclick="go('course-pal')">緩解性療程</a>
+    <a onclick="go('course','#course-sbrt')">立體定位 SBRT</a>
+  </div>
+  <a data-nav="side" onclick="go('side')"><span class="num">4</span>副作用</a>
+  <div class="sub" data-sub="side">
+    <a onclick="go('side-sys')">全身性副作用</a>
+    <a onclick="go('side-skin')">皮膚反應</a>
+    <a onclick="go('side-parts')">各部位副作用</a>
+    <a onclick="go('side','#side-er')">立即返診情況</a>
+  </div>
+  <a data-nav="pay" onclick="go('pay')"><span class="num">5</span>健保與自費</a>
+  <div class="sub" data-sub="pay">
+    <a onclick="go('pay','#pay-igrt')">影像導引技術</a>
+    <a onclick="go('pay-prostate')">攝護腺癌</a>
+    <a onclick="go('pay-breast')">乳癌</a>
+    <a onclick="go('pay-bone')">骨轉移</a>
+  </div>
+  <a data-nav="nutrition" onclick="go('nutrition')"><span class="num">6</span>營養補充、其他</a>
+  <div class="sub" data-sub="nutrition">
+    <a onclick="go('nutrition','#nu-diet')">飲食原則</a>
+    <a onclick="go('nutrition-prod')">營養補充</a>
+    <a onclick="go('nutrition-dress')">皮膚敷料</a>
+    <a onclick="go('nutrition-mouth')">漱口水</a>
+  </div>
+</aside>
+
+<main>
+
+<!-- ════════════════════════ 首頁 ════════════════════════ -->
+<div class="page show" id="page-home">
+  <div class="hero">
+    <div class="hero-text">
+      <h1>放射治療<br>流程與介紹</h1>
+      <p>亞東紀念醫院 放射腫瘤科</p>
+      <p style="margin-top:10px;">了解您的治療計畫，安心面對每一次療程 🌿</p>
+    </div>
+    <div class="hero-img" style="background:transparent;box-shadow:none;">
+      <img src="assets/hero_cartoon.png" alt="放射治療示意插畫">
+      <p style="text-align:center;margin-top:8px;font-size:13.5px;color:var(--ink-soft);opacity:.65;">網頁製作: 莊玉瑄醫師</p>
+    </div>
+  </div>
+
+  <div class="home-grid">
+    <div class="home-card" onclick="go('intro')">
+      <div class="hc-icon" style="background:var(--teal-light);">💡</div>
+      <h3>① 什麼是放射治療？</h3>
+      <p>原理・目的・適應症</p>
+      <div class="hc-go">前往了解 →</div>
+    </div>
+    <div class="home-card" onclick="go('prep')">
+      <div class="hc-icon" style="background:var(--blue-light);">📋</div>
+      <h3>② 準備流程</h3>
+      <p>定位・模具・等待通知</p>
+      <div class="hc-go">前往了解 →</div>
+    </div>
+    <div class="home-card" onclick="go('course')">
+      <div class="hc-icon" style="background:var(--wood-light);">📅</div>
+      <h3>③ 療程介紹</h3>
+      <p>標準・低分次・SBRT</p>
+      <div class="hc-go">前往了解 →</div>
+    </div>
+    <div class="home-card" onclick="go('side')">
+      <div class="hc-icon" style="background:var(--coral-light);">🌡️</div>
+      <h3>④ 副作用</h3>
+      <p>各部位・急性・慢性</p>
+      <div class="hc-go">前往了解 →</div>
+    </div>
+    <div class="home-card" onclick="go('pay')">
+      <div class="hc-icon" style="background:var(--amber-light);">💳</div>
+      <h3>⑤ 健保與自費</h3>
+      <p>給付說明・費用比較</p>
+      <div class="hc-go">前往了解 →</div>
+    </div>
+    <div class="home-card" onclick="go('nutrition')">
+      <div class="hc-icon" style="background:var(--teal-light);">🥗</div>
+      <h3>⑥ 營養補充、其他</h3>
+      <p>院內建議產品一覽</p>
+      <div class="hc-go">前往了解 →</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ ① 什麼是放射治療 ════════════════════════ -->
+<div class="page" id="page-intro">
+  <div class="page-head">
+    <div class="crumb">主題 ① ｜什麼是放射治療？</div>
+    <h1>放射治療 = 高能 X 光</h1>
+    <p>照射腫瘤，殺死癌細胞</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="card">
+        <h3>治療特色</h3>
+        <ul>
+          <li>不需麻醉・<strong>非侵入性</strong></li>
+          <li>過程類似電腦斷層（CT）掃描</li>
+          <li>每次躺著照射約 <strong>10–20 分鐘</strong></li>
+        </ul>
+        <div class="note blue" style="margin-top:18px;">
+          <span class="ico">💡</span>
+          <span>放射線<strong>不會殘留在體內</strong>，照射結束後立即消失，不會影響身旁的家人。</span>
+        </div>
+      </div>
+      <div class="figure" style="margin:0;">
+        <img src="assets/machine.jpg" alt="直線加速器" onclick="zoom(this)">
+        <figcaption>亞東醫院直線加速器治療情形</figcaption>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="intro-goal">
+    <h2><span class="dot"></span>治療目的</h2>
+    <div class="two-col">
+      <div class="card" style="border-top:8px solid var(--teal);">
+        <h3 style="color:var(--teal-dark);">🎯 根治性 Curative</h3>
+        <ul>
+          <li>術前縮小腫瘤</li>
+          <li>術後預防復發</li>
+          <li>合併化療增效</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:8px solid var(--coral);">
+        <h3 style="color:var(--coral);">🩹 緩解性 Palliative</h3>
+        <ul>
+          <li>骨轉移止痛</li>
+          <li>腫瘤止血</li>
+          <li>減輕壓迫症狀，延緩疾病進展</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="intro-indication">
+    <h2><span class="dot"></span>適應症</h2>
+    <div class="card">
+      <p>幾乎所有固態腫瘤都可能接受放射治療，常見包括：</p>
+      <div class="tags">
+        <span class="tag">頭頸癌</span><span class="tag">鼻咽癌</span>
+        <span class="tag">乳癌</span><span class="tag">肺癌</span>
+        <span class="tag">食道癌</span><span class="tag">肝癌</span>
+        <span class="tag">攝護腺癌</span><span class="tag">直腸癌</span>
+        <span class="tag">子宮頸癌</span><span class="tag">膀胱癌</span>
+        <span class="tag">腦腫瘤</span><span class="tag">骨轉移</span>
+        <span class="tag">腦轉移</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('prep')">下一主題：準備流程 →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════ ② 準備流程 ════════════════════════ -->
+<div class="page" id="page-prep">
+  <div class="page-head">
+    <div class="crumb">主題 ② ｜準備流程</div>
+    <h1>1–2 週｜治療前準備工作</h1>
+    <p>從決定治療到第一次照射，需要時間設計專屬於您的個人放療計畫</p>
+  </div>
+
+  <section class="block" id="prep-s1">
+    <h2><span class="dot"></span>Step 1 門診評估</h2>
+    <div class="card">
+      <span class="step-label">第一步</span>
+      <ul>
+        <li>放射腫瘤科醫師評估病情與分期</li>
+        <li>說明治療目標、方式、副作用與預期療效</li>
+        <li>解釋自費項目、護理師衛教</li>
+      </ul>
+    </div>
+    <div class="fig-row c2">
+      <div class="figure"><img src="assets/consult_dr.jpg" alt="醫師門診說明" onclick="zoom(this)"><figcaption>醫師詳細說明治療計畫</figcaption></div>
+      <div class="figure"><img src="assets/consult_desk.jpg" alt="櫃台衛教說明" onclick="zoom(this)"><figcaption>護理師衛教與行政說明</figcaption></div>
+    </div>
+  </section>
+
+  <section class="block" id="prep-s2">
+    <h2><span class="dot"></span>Step 2 定位掃描</h2>
+    <div class="card">
+      <span class="step-label" style="background:var(--teal);">第二步</span>
+      <ul>
+        <li>依治療部位製作固定模具（頭頸面罩・固定身體的真空床）</li>
+        <li>進行定位 CT 掃描，確定每次治療的姿勢</li>
+        <li>放射師在體表畫上<strong>定位黑線</strong>作為對位基準</li>
+      </ul>
+    </div>
+    <div class="fig-row c3">
+      <div class="figure"><img src="assets/mask.jpg" alt="頭頸固定面罩" onclick="zoom(this)"><figcaption>頭頸固定面罩</figcaption></div>
+      <div class="figure"><img src="assets/vacbed.jpg" alt="真空固定床" onclick="zoom(this)"><figcaption>固定身體的真空床</figcaption></div>
+      <div class="figure"><img src="assets/marking.jpg" alt="體表定位畫線" onclick="zoom(this)"><figcaption>放射師畫定位線</figcaption></div>
+    </div>
+    <div class="note red">
+      <span class="ico">🚫</span>
+      <span><strong>定位黑線是每次治療精準對位的重要依據，請勿洗掉！</strong><br>
+      不小心洗掉請立即告知放射師，勿自行描繪喔！</span>
+    </div>
+  </section>
+
+  <section class="block" id="prep-s3">
+    <h2><span class="dot"></span>Step 3 計畫設計</h2>
+    <div class="card">
+      <span class="step-label" style="background:var(--blue-dark);">第三步</span>
+      <ul>
+        <li>醫師和物理師共同設計照射計畫</li>
+        <li>確保腫瘤獲得足夠劑量，正常組織受到最大保護</li>
+        <li>計畫完成後，會有<strong>專人電話通知</strong>治療開始日期</li>
+      </ul>
+    </div>
+    <div class="fig-row c2">
+      <div class="figure"><img src="assets/planning1.jpg" alt="醫師設計照射範圍" onclick="zoom(this)"><figcaption>醫師設計照射範圍</figcaption></div>
+      <div class="figure"><img src="assets/planning2.jpg" alt="醫學物理師進行劑量計算" onclick="zoom(this)"><figcaption>醫學物理師進行劑量計算</figcaption></div>
+    </div>
+  </section>
+
+  <section class="block" id="prep-note">
+    <h2><span class="dot"></span>注意事項</h2>
+    <div class="stats">
+      <div class="stat"><div class="n">✅</div><div class="l"><strong>等待通知</strong><br>莫急莫慌</div></div>
+      <div class="stat"><div class="n">🚫</div><div class="l"><strong>黑線不可洗</strong><br>對位重要依據</div></div>
+      <div class="stat"><div class="n">📝</div><div class="l"><strong>確認自費項目</strong><br>第一次治療開始前</div></div>
+      <div class="stat"><div class="n">📞</div><div class="l"><strong>有疑問</strong><br>請聯繫門診</div></div>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('intro')">← 什麼是放射治療</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('course')">下一主題：療程介紹 →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════ ③ 療程介紹 ════════════════════════ -->
+<div class="page" id="page-course">
+  <div class="page-head">
+    <div class="crumb">主題 ③ ｜療程介紹</div>
+    <h1>每週 5 次｜週一至週五</h1>
+    <p>每次照射約 10–20 分鐘，療程 3–8 週依病情決定</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="n">10–20</div><div class="l">分鐘／次</div></div>
+    <div class="stat"><div class="n">5</div><div class="l">次／週</div></div>
+    <div class="stat"><div class="n">15–39</div><div class="l">總次數</div></div>
+  </div>
+
+  <section class="block" id="course-std">
+    <h2><span class="dot"></span>傳統療程</h2>
+    <p style="margin-bottom:16px;color:var(--ink-soft);">依治療目標分為兩類，點擊查看詳細內容</p>
+    <div class="link-cards" style="grid-template-columns:repeat(2,1fr);">
+      <div class="link-card" onclick="go('course-cur')">
+        <div class="lc-icon">🎯</div>
+        <h3>根治性療程</h3>
+        <p>以消滅腫瘤為目標・常見癌症劑量</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
+      <div class="link-card" onclick="go('course-pal')">
+        <div class="lc-icon">🩹</div>
+        <h3>緩解性療程</h3>
+        <p>以緩解症狀為目標・1–2 週完成</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="course-sbrt">
+    <h2><span class="dot"></span>立體定位放射治療 SBRT / SABR<span class="badge-special">✨ 精準特色治療</span></h2>
+    <div class="card">
+      <p>次數少・劑量高・精準定位</p>
+    </div>
+    <div class="note green">
+      <span class="ico">✅</span>
+      <span><strong>健保申請：</strong>原發及轉移肝／肺腫瘤・中低風險攝護腺癌・腦轉移</span>
+    </div>
+    <div class="note amber">
+      <span class="ico">⚡</span>
+      <span><strong>自費：</strong>高風險攝護腺癌・乳癌・復發頭頸癌・骨轉移</span>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('prep')">← 準備流程</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('side')">下一主題：副作用 →</button>
+  </div>
+</div>
+
+<!-- ════════════════ ③-1 根治性療程 ════════════════ -->
+<div class="page" id="page-course-cur">
+  <div class="page-head">
+    <div class="crumb">主題 ③ ｜療程介紹 ▸ 根治性療程</div>
+    <h1>根治性療程｜常見癌症劑量</h1>
+    <p>以消滅腫瘤為目標的完整療程</p>
+  </div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>癌症</th><th>總劑量</th><th>次數</th><th>週數</th></tr></thead>
+      <tbody>
+        <tr><td>鼻咽癌</td><td>70 Gy</td><td>35 次</td><td>7 週</td></tr>
+        <tr><td>食道癌</td><td>50.4 Gy</td><td>28 次</td><td>5.5 週</td></tr>
+        <tr><td>膀胱癌</td><td>55 Gy</td><td>20 次</td><td>4 週</td></tr>
+        <tr><td>早期乳癌（術後）</td><td>42.25 Gy</td><td>16 次</td><td>3 週</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:18px;color:var(--ink-soft);">※ 實際劑量依個人病情由醫師決定</p>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('course')">← 返回療程介紹</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('course-pal')">緩解性療程 →</button>
+  </div>
+</div>
+
+<!-- ════════════════ ③-2 緩解性療程 ════════════════ -->
+<div class="page" id="page-course-pal">
+  <div class="page-head">
+    <div class="crumb">主題 ③ ｜療程介紹 ▸ 緩解性療程</div>
+    <h1>緩解性療程｜1–2 週完成</h1>
+    <p>以緩解症狀、提升生活品質為目標</p>
+  </div>
+  <div class="card">
+    <ul>
+      <li>目的：<strong>緩解症狀</strong>為主，非根治</li>
+      <li>共約 5–10 次，1–2 週完成</li>
+      <li>常見：腦轉移、骨轉移</li>
+    </ul>
+  </div>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('course-cur')">← 根治性療程</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('course','#course-sbrt')">立體定位 SBRT →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════ ④ 副作用 ════════════════════════ -->
+<div class="page" id="page-side">
+  <div class="page-head">
+    <div class="crumb">主題 ④ ｜副作用</div>
+    <h1>副作用因部位而異</h1>
+    <p>多數為暫時性，治療結束後可逐漸恢復</p>
+  </div>
+
+  <section class="block" id="side-menu">
+    <h2><span class="dot"></span>副作用分類</h2>
+    <p style="margin-bottom:16px;color:var(--ink-soft);">點擊查看各類副作用詳細說明</p>
+    <div class="link-cards">
+      <div class="link-card" onclick="go('side-sys')">
+        <div class="lc-icon">😴</div>
+        <h3>全身性副作用</h3>
+        <p>疲倦・血球降低・噁心嘔吐</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
+      <div class="link-card" onclick="go('side-skin')">
+        <div class="lc-icon">🧴</div>
+        <h3>皮膚反應</h3>
+        <p>類似曬傷・第3週開始出現</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
+      <div class="link-card" onclick="go('side-parts')">
+        <div class="lc-icon">🗺️</div>
+        <h3>各部位副作用</h3>
+        <p>頭頸・胸・腹・骨盆腔・四肢・腦</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <section class="block" id="side-er">
+    <h2><span class="dot" style="background:var(--red);"></span>⚠️ 立即返診</h2>
+    <div class="note red" style="font-size:22px;">
+      <span class="ico">🆘</span>
+      <span><strong>出現以下情況請立刻前往急診：</strong><br>
+      ・吐血 或 劇烈胸痛（食道穿孔疑慮）<br>
+      ・發燒 38.5°C 以上合併發冷<br>
+      ・大出血<br>
+      ・嚴重呼吸困難</span>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('course')">← 療程介紹</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('pay')">下一主題：健保與自費 →</button>
+  </div>
+</div>
+<!-- ════════════════ ④-1 全身性副作用 ════════════════ -->
+<div class="page" id="page-side-sys">
+  <div class="page-head">
+    <div class="crumb">主題 ④ ｜副作用 ▸ 全身性副作用</div>
+    <h1>全身性副作用</h1>
+    <p>多數為暫時性，治療結束後可逐漸恢復</p>
+  </div>
+  <section class="block" id="side-sys">
+    <h2><span class="dot"></span>全身性副作用</h2>
+    <div class="three-col">
+      <div class="card" style="text-align:center;">
+        <div style="font-size:52px;">😴</div>
+        <h3>疲倦感</h3>
+        <p style="color:var(--ink-soft);">最常見，建議充足休息</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:52px;">🩸</div>
+        <h3>血球降低</h3>
+        <p style="color:var(--ink-soft);">合併化療時較明顯</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:52px;">🤢</div>
+        <h3>噁心／嘔吐</h3>
+        <p style="color:var(--ink-soft);">腹部照射時較常見</p>
+      </div>
+    </div>
+  </section>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('side')">← 返回副作用</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('side-skin')">皮膚反應 →</button>
+  </div>
+</div>
+<!-- ════════════════ ④-2 皮膚反應 ════════════════ -->
+<div class="page" id="page-side-skin">
+  <div class="page-head">
+    <div class="crumb">主題 ④ ｜副作用 ▸ 皮膚反應</div>
+    <h1>皮膚反應</h1>
+    <p>類似曬傷，第 3 週開始出現，隨劑量累積加重</p>
+  </div>
+  <section class="block" id="side-skin">
+    <h2><span class="dot"></span>皮膚反應</h2>
+    <div class="card">
+      <p>類似曬傷，<strong>第 3 週</strong>開始出現，隨劑量累積加重</p>
+    </div>
+    <div class="three-col">
+      <div class="card" style="border-top:8px solid var(--amber);">
+        <h3 style="color:var(--amber);">第 1–2 週</h3>
+        <p>微紅、輕微搔癢</p>
+      </div>
+      <div class="card" style="border-top:8px solid var(--coral);">
+        <h3 style="color:var(--coral);">第 3–4 週</h3>
+        <p>明顯泛紅・乾燥・色素沉著</p>
+      </div>
+      <div class="card" style="border-top:8px solid var(--red);">
+        <h3 style="color:var(--red);">嚴重情況<span style="font-size:16px;">（不一定會發生）</span></h3>
+        <p>水泡・濕性脫皮</p>
+      </div>
+    </div>
+    <div class="figure">
+      <img src="assets/skin_strip.jpg" alt="皮膚反應程度照片（由輕到重）" onclick="zoom(this)">
+      <figcaption>皮膚反應程度示意，由左至右逐漸加重（J Cancer Sci Ther 2009;1(1):028-033）</figcaption>
+    </div>
+    <div class="note green">
+      <span class="ico">💆</span>
+      <span><strong>皮膚照護：</strong>每次照射後塗抹保濕乳液・避免日曬與摩擦治療區域</span>
+    </div>
+  </section>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('side-sys')">← 全身性副作用</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('side-parts')">各部位副作用 →</button>
+  </div>
+</div>
+<!-- ════════════════ ④-3 各部位副作用 ════════════════ -->
+<div class="page" id="page-side-parts">
+  <div class="page-head">
+    <div class="crumb">主題 ④ ｜副作用 ▸ 各部位副作用</div>
+    <h1>各部位副作用</h1>
+    <p>依照射部位不同而異</p>
+  </div>
+  <section class="block" id="side-parts">
+    <h2><span class="dot"></span>各部位副作用</h2>
+    <div class="se-grid">
+      <div class="se-card">
+        <h4>👤 頭頸部</h4>
+        <ul>
+          <li>口腔黏膜炎（口破）</li>
+          <li>口乾・味覺改變（1–3月）</li>
+          <li>皮膚反應・吞嚥困難</li>
+        </ul>
+        <div class="chronic">慢性：纖維化・蛀牙・耳鳴・聽力退化</div>
+      </div>
+      <div class="se-card">
+        <h4>🫁 胸部</h4>
+        <ul>
+          <li>食道炎（吞嚥疼痛）</li>
+          <li>放射性肺炎</li>
+          <li>食道穿孔（罕見危險）</li>
+        </ul>
+        <div class="chronic">慢性：淋巴水腫（約10%）・肺纖維化</div>
+      </div>
+      <div class="se-card">
+        <h4>🫃 腹部</h4>
+        <ul>
+          <li>噁心・嘔吐</li>
+          <li>放射性肝炎</li>
+          <li>腹水（少見）</li>
+        </ul>
+        <div class="chronic">慢性（少見）：腸沾黏・腸穿孔</div>
+      </div>
+      <div class="se-card">
+        <h4>🦴 骨盆腔</h4>
+        <ul>
+          <li>腹瀉</li>
+          <li>頻尿・解尿疼痛</li>
+          <li>直腸炎</li>
+        </ul>
+        <div class="chronic">慢性：直腸炎・膀胱炎（各 &lt;10%）</div>
+      </div>
+      <div class="se-card">
+        <h4>🦿 四肢</h4>
+        <ul>
+          <li>皮膚反應</li>
+          <li>水腫</li>
+        </ul>
+        <div class="chronic">慢性：纖維化・關節攣縮・骨折風險</div>
+      </div>
+      <div class="se-card">
+        <h4>🧠 腦部</h4>
+        <ul>
+          <li>掉髮</li>
+          <li>腦水腫</li>
+        </ul>
+        <div class="chronic">慢性：認知功能退化</div>
+      </div>
+    </div>
+  </section>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('side-skin')">← 皮膚反應</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('side','#side-er')">立即返診情況 →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════ ⑤ 健保與自費 ════════════════════════ -->
+<div class="page" id="page-pay">
+  <div class="page-head">
+    <div class="crumb">主題 ⑤ ｜健保與自費</div>
+    <h1>基本療程健保給付</h1>
+    <p>進階影像導引技術可進一步提高治療精準度</p>
+  </div>
+
+  <section class="block" id="pay-igrt">
+    <h2><span class="dot"></span>影像導引技術比較</h2>
+    <div class="two-col">
+      <div class="card" style="border-top:8px solid var(--blue);">
+        <h3>健保給付</h3>
+        <div class="note blue" style="margin:10px 0 0;">
+          <span class="ico">⚡</span>
+          <span><strong>每週一次 X 光片對位</strong><br>對骨頭位置，無法看到內部結構變化</span>
+        </div>
+      </div>
+      <div class="card" style="border-top:8px solid var(--teal);">
+        <h3>自費項目</h3>
+        <div class="note green" style="margin:10px 0 8px;">
+          <span class="ico">⚡</span>
+          <span><strong>電腦斷層影像導引（Image-guide）</strong><br>可依解剖結構變化調整位置，觀察腫瘤是否縮小</span>
+        </div>
+        <div class="note green" style="margin:0;">
+          <span class="ico">⚡</span>
+          <span><strong>影像融合技術（Image fusion）</strong><br>融合不同影像，更精確鎖定腫瘤範圍</span>
+        </div>
+      </div>
+    </div>
+    <div class="fig-row c2">
+      <div class="figure"><img src="assets/xray_port.jpg" alt="X光對位影像" onclick="zoom(this)"><figcaption>健保：X 光片對位（對骨頭位置）</figcaption></div>
+      <div class="figure"><img src="assets/igrt_ct.jpg" alt="每日影像導引" onclick="zoom(this)"><figcaption>自費：每日電腦斷層影像導引，可看到膀胱・攝護腺・直腸</figcaption></div>
+    </div>
+    <div class="fusion-diagram" style="background:transparent;">
+      <div class="fd-stack">
+        <div class="fd-item">
+          <img src="assets/fus_petreg.png" alt="正子影像" onclick="zoom(this)">
+          <span>正子影像（PET）</span>
+        </div>
+        <div class="fd-item">
+          <img src="assets/fus_ct.png" alt="電腦斷層" onclick="zoom(this)">
+          <span>電腦斷層（CT）</span>
+        </div>
+      </div>
+      <div class="fd-arrow">➜<small>影像融合</small></div>
+      <div class="fd-item">
+        <img src="assets/fus_fused.png" alt="融合影像" class="fd-big" onclick="zoom(this)">
+        <span>融合影像</span>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:20px;font-weight:700;color:var(--teal-dark);margin-top:4px;">自費影像融合: 更精確辨識腫瘤範圍，保護周圍器官</p>
+    <p style="text-align:center;font-size:16px;color:var(--ink-soft);margin-top:2px;">Report of the AAPM Radiation Therapy Committee Task Group No. 132. Med. Phys., 2017</p>
+  </section>
+
+  <section class="block" id="pay-cancers">
+    <h2><span class="dot"></span>各癌症治療選項與費用</h2>
+    <p style="margin-bottom:16px;color:var(--ink-soft);">點擊查看各癌症的治療方式與費用比較</p>
+    <div class="link-cards">
+      <div class="link-card" onclick="go('pay-prostate')">
+        <div class="lc-icon">🎗️</div>
+        <h3>攝護腺癌</h3>
+        <p>傳統・低分次・SBRT 三種選擇</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
+      <div class="link-card" onclick="go('pay-breast')">
+        <div class="lc-icon">🌸</div>
+        <h3>乳癌</h3>
+        <p>術後放射治療選項</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
+      <div class="link-card" onclick="go('pay-bone')">
+        <div class="lc-icon">🦴</div>
+        <h3>骨轉移</h3>
+        <p>傳統 vs 立體定位比較</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('side')">← 副作用</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('nutrition')">下一主題：營養補充、其他 →</button>
+  </div>
+</div>
+
+<!-- ════════════════ ⑤-1 攝護腺癌 ════════════════ -->
+<div class="page" id="page-pay-prostate">
+  <div class="page-head">
+    <div class="crumb">主題 ⑤ ｜健保與自費 ▸ 攝護腺癌</div>
+    <h1>攝護腺癌｜三種治療選擇</h1>
+  </div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>治療方式</th><th>劑量／次數</th><th>費用</th></tr></thead>
+      <tbody>
+        <tr><td>傳統分次</td><td>78 Gy / 39 次（8週）</td><td><span class="ok">✅ 健保</span></td></tr>
+        <tr><td>低分次</td><td>60 Gy / 20 次（4週）</td><td><span class="ok">✅ 健保</span><br><span class="warn">⚠️ 須搭配電腦斷層影像導引（15萬）</span></td></tr>
+        <tr><td>超短療程 SBRT</td><td>36.25 Gy / 5 次（1–2週）</td><td><span class="ok">✅ 健保</span>（中低風險，須事前申請）<br><span class="warn">⚠️ 高風險須自費立體定位放射治療（23萬）</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('pay')">← 返回健保與自費</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('pay-breast')">乳癌 →</button>
+  </div>
+</div>
+
+<!-- ════════════════ ⑤-2 乳癌 ════════════════ -->
+<div class="page" id="page-pay-breast">
+  <div class="page-head">
+    <div class="crumb">主題 ⑤ ｜健保與自費 ▸ 乳癌</div>
+    <h1>乳癌｜術後放射治療選項</h1>
+  </div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>治療方式</th><th>劑量／次數</th><th>費用</th></tr></thead>
+      <tbody>
+        <tr><td>傳統分次</td><td>50 Gy / 25 次（5週）</td><td><span class="ok">✅ 健保</span></td></tr>
+        <tr><td>低分次</td><td>40 Gy / 15 次（3週）</td><td><span class="ok">✅ 健保</span>（符合條件）</td></tr>
+        <tr><td>超短療程 SBRT</td><td>26 Gy / 5 次（1週）</td><td><span class="warn">⚠️ 須自費立體定位放射治療（23萬）</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note blue">
+    <span class="ico">⚡</span>
+    <span>傳統分次與低分次皆可考慮搭配影像導引技術</span>
+  </div>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('pay')">← 返回健保與自費</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('pay-bone')">骨轉移 →</button>
+  </div>
+</div>
+
+<!-- ════════════════ ⑤-3 骨轉移 ════════════════ -->
+<div class="page" id="page-pay-bone">
+  <div class="page-head">
+    <div class="crumb">主題 ⑤ ｜健保與自費 ▸ 骨轉移</div>
+    <h1>骨轉移｜傳統 vs 立體定位</h1>
+  </div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>治療類型</th><th>劑量</th><th>疼痛控制</th><th>1年局部控制</th></tr></thead>
+      <tbody>
+        <tr><td>傳統分次<br><span class="ok">✅ 健保</span></td><td>20–30 Gy / 5–10 次</td><td>60–70%</td><td>60–70%</td></tr>
+        <tr><td>立體定位 SBRT<br><span class="warn">⚠️ 須自費 9500</span></td><td>12–27 Gy / 1–3 次</td><td><strong>80–90%</strong></td><td><strong>85–95%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('pay')">← 返回健保與自費</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('nutrition')">下一主題：營養補充、其他 →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════ ⑥ 營養補充、其他 ════════════════════════ -->
+<div class="page" id="page-nutrition">
+  <div class="page-head">
+    <div class="crumb">主題 ⑥ ｜營養補充、其他</div>
+    <h1>吃得好，才能撐過療程</h1>
+    <p>維持體重與肌肉量，是完成放射治療的重要基礎</p>
+  </div>
+
+  <section class="block" id="nu-diet">
+    <h2><span class="dot"></span>飲食原則</h2>
+    <div class="card">
+      <ul>
+        <li>均衡飲食：<strong>蛋白質（蛋・肉）＋蔬菜＋全穀類</strong></li>
+        <li>低脂・清淡・不刺激，戒菸戒酒</li>
+        <li>每天飲水 <strong>1500–2000 mL</strong></li>
+        <li>食慾不佳時補充特殊醫療配方</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="nu-menu">
+    <h2><span class="dot"></span>補充品與照護用品</h2>
+    <p style="margin-bottom:16px;color:var(--ink-soft);">點擊查看各類產品詳細介紹</p>
+    <div class="link-cards">
+      <div class="link-card" onclick="go('nutrition-prod')">
+        <div class="lc-icon">🥛</div>
+        <h3>營養補充</h3>
+        <p>癌症配方・修復・免疫調節</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
+      <div class="link-card" onclick="go('nutrition-dress')">
+        <div class="lc-icon">🩹</div>
+        <h3>皮膚敷料</h3>
+        <p>貼膜・凝膠・修護霜</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
+      <div class="link-card" onclick="go('nutrition-mouth')">
+        <div class="lc-icon">🦷</div>
+        <h3>漱口水</h3>
+        <p>口腔黏膜照護・研究計畫</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('pay')">← 健保與自費</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+  </div>
+</div>
+<!-- ════════════════ ⑥ 營養補充 ════════════════ -->
+<div class="page" id="page-nutrition-prod">
+  <div class="page-head">
+    <div class="crumb">主題 ⑥ ｜營養補充、其他 ▸ 營養補充</div>
+    <h1>營養補充</h1>
+    <p>實際使用請依醫師、營養師指示</p>
+  </div>
+  <section class="block" id="nu-prod">
+    <h2><span class="dot"></span>營養補充</h2>
+    <p style="margin-bottom:14px;color:var(--ink-soft);">點擊圖片可放大 🔍（實際使用請依醫師、營養師指示）</p>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu1.jpg" alt="倍力素" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--coral);">癌症配方</span><h4>倍力素</h4><p>高蛋白魚油・抗發炎，維持體重及肌肉（一天最多2瓶）</p></div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu2.jpg" alt="倍速" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--coral);">癌症配方</span><h4>倍速</h4><p>高蛋白魚油・抗發炎，維持體重及肌肉（一天最多2瓶）</p></div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu3.jpg" alt="倍力補體素" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--coral);">癌症配方</span><h4>倍力補體素</h4><p>高蛋白魚油・抗發炎（奶素可素食）</p></div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu4.jpg" alt="補體素 P80" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--coral);">癌症配方</span><h4>補體素 P80</h4><p>高蛋白乳清蛋白，可用於肌肉生長組織修復</p></div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu5.jpg" alt="頤得健 Ethanimmu" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--coral);">癌症配方</span><h4>頤得健 Ethanimmu</h4><p>乳清蛋白／增加肌肉</p></div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu6.jpg" alt="懷特耆力 Amazpower" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--blue);">免疫調節</span><h4>懷特耆力 Amazpower</h4><p>調養機能・調整免疫・改善疲勞疲憊</p></div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu10.jpg" alt="禮淂多補多 B-Glucan" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--blue);">免疫調節</span><h4>禮淂多補多 B-Glucan</h4><p>黃金配方，支持免疫調節</p></div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu7.jpg" alt="基速得" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--teal);">傷口癒合</span><h4>基速得</h4><p>支援身體修復、加速各類傷口的癒合</p></div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu8.jpg" alt="速養療" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--teal);">黏膜修復</span><h4>速養療</h4><p>組織修復・減少腸胃不適</p></div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu9.jpg" alt="愛沛元氣素 Aminopure" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--teal);">黏膜修復</span><h4>愛沛元氣素 Aminopure</h4><p>腸道與黏膜修復</p></div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu12.jpg" alt="Biofermin-R" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--blue);">腸道保健</span><h4>Biofermin-R</h4><p>維持腸道菌叢</p></div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/nu11.png" alt="禮淂 Omega-3 85% TG魚油" onclick="zoom(this)"></div>
+        <div class="pbody"><span class="ptype" style="background:var(--blue);">抗發炎</span><h4>禮淂 Omega-3 85% TG魚油</h4><p>抗發炎・支持心血管</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('nutrition')">← 返回營養補充、其他</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('nutrition-dress')">皮膚敷料 →</button>
+  </div>
+</div>
+<!-- ════════════════ ⑥ 皮膚敷料 ════════════════ -->
+<div class="page" id="page-nutrition-dress">
+  <div class="page-head">
+    <div class="crumb">主題 ⑥ ｜營養補充、其他 ▸ 皮膚敷料</div>
+    <h1>皮膚敷料</h1>
+    <p>依傷口狀況選擇，以醫師評估為準</p>
+  </div>
+  <section class="block" id="nu-dress">
+    <h2><span class="dot"></span>皮膚敷料</h2>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/dress1.jpg" alt="美皮通皮膚保護膜" onclick="zoom(this)"></div>
+        <div class="pbody">
+          <span class="ptype">貼膜</span>
+          <h4>美尼克美皮通皮膚保護膜敷料</h4>
+          <p>保護皮膚避免衣物磨擦；約 14 天再行更換</p>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/dress3.jpg" alt="舒放療凝膠" onclick="zoom(this)"></div>
+        <div class="pbody">
+          <span class="ptype">凝膠</span>
+          <h4>舒放療凝膠 75ml</h4>
+          <p>玻尿酸成分，保濕照護</p>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/dress2.jpg" alt="舒坦麗凝膠膚料" onclick="zoom(this)"></div>
+        <div class="pbody">
+          <span class="ptype">凝膠</span>
+          <h4>舒坦麗凝膠膚料（滅菌）20g</h4>
+          <p>保護皮膚避免磨擦・抑菌；滅菌可用於有傷口皮膚</p>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/dress5.jpg" alt="加納軟膏" onclick="zoom(this)"></div>
+        <div class="pbody">
+          <span class="ptype">凝膠</span>
+          <h4>加納軟膏 100ml</h4>
+          <p>Beta 葡聚醣、海藻酸鈉、玻尿酸，保濕照護修復</p>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/dress4.jpg" alt="NS-21肌膚修護霜" onclick="zoom(this)"></div>
+        <div class="pbody">
+          <span class="ptype">凝膠</span>
+          <h4>NS-21 肌膚修護霜 100g</h4>
+          <p>尿素、尿囊素為皮膚添加天然保護膜，保濕照護修復</p>
+        </div>
+      </div>
+    </div>
+    <div class="note coral" style="margin-top:20px;">
+      <span class="ico">📌</span>
+      <span>如有皮膚破損・水泡或傷口，請至放射腫瘤科門診評估，<strong>勿自行貼膠布或使用來路不明的藥膏</strong></span>
+    </div>
+  </section>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('nutrition-prod')">← 營養補充</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('nutrition-mouth')">漱口水 →</button>
+  </div>
+</div>
+<!-- ════════════════ ⑥ 漱口水 ════════════════ -->
+<div class="page" id="page-nutrition-mouth">
+  <div class="page-head">
+    <div class="crumb">主題 ⑥ ｜營養補充、其他 ▸ 漱口水</div>
+    <h1>漱口水</h1>
+    <p>口腔黏膜照護</p>
+  </div>
+  <section class="block" id="nu-mouth">
+    <h2><span class="dot"></span>漱口水</h2>
+    <div class="prod-grid">
+      <div class="prod-card"><div class="pimg"><img src="assets/mouth1.jpg" alt="漱口水產品1" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">漱口水</span><h4>膜速濕漱口水</h4><p>不含酒精・不刺激口腔黏膜</p></div></div>
+      <div class="prod-card"><div class="pimg"><img src="assets/mouth2.jpg" alt="漱口水產品2" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">漱口水</span><h4>口腔保健漱口水</h4><p>維持口腔清潔・舒緩不適</p></div></div>
+      <div class="prod-card"><div class="pimg"><img src="assets/mouth3.jpg" alt="漱口水產品3" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">漱口水</span><h4>口腔修護漱口水</h4><p>輔助口腔黏膜照護</p></div></div>
+      <div class="prod-card"><div class="pimg"><img src="assets/mouth4.jpg" alt="漱口水產品4" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">漱口水</span><h4>口腔護理漱口水</h4><p>治療期間口腔保健</p></div></div>
+    </div>
+    <div class="note green" style="margin-top:20px;">
+      <span class="ico">🎁</span>
+      <span><strong>參與最新研究計畫填寫問卷，治療期間可獲得免費漱口水使用！</strong>詳情請洽門診護理師</span>
+    </div>
+  </section>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('nutrition-dress')">← 皮膚敷料</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+  </div>
+</div>
+
+</main>
+</div>
+
+<!-- 燈箱 -->
+<div id="lightbox" onclick="this.classList.remove('on')"><img id="lb-img" src="" alt="放大檢視"></div>
+
+<script>
+function go(page, anchor){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+  document.getElementById('page-'+page).classList.add('show');
+  const base = page.split('-')[0];
+  document.querySelectorAll('aside a[data-nav]').forEach(a=>{
+    a.classList.toggle('active', a.dataset.nav===base);
+  });
+  document.querySelector('aside').classList.remove('open');
+  if(anchor){
+    setTimeout(()=>{ const el=document.querySelector(anchor); if(el) el.scrollIntoView({behavior:'smooth'}); },60);
+  } else {
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+// 圖片載入失敗自動重試（最多3次）
+document.addEventListener('error', e=>{
+  const img = e.target;
+  if(img.tagName==='IMG' && img.getAttribute('src') && img.getAttribute('src').includes('assets/')){
+    const n = +(img.dataset.retry||0);
+    if(n<3){ img.dataset.retry=n+1; setTimeout(()=>{ img.src = img.src.split('?')[0]+'?r='+Date.now(); }, 400*(n+1)); }
+  }
+}, true);
+
+function zoom(img){
+  document.getElementById('lb-img').src = img.src;
+  document.getElementById('lightbox').classList.add('on');
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') document.getElementById('lightbox').classList.remove('on');
+});
+</script>
+</body>
+</html>
