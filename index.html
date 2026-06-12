@@ -218,6 +218,7 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
 .fig-row.c3{grid-template-columns:repeat(3,1fr);}
 .fig-row .figure{margin:0;}
 .fig-row .figure img{height:240px;object-fit:cover;}
+.figure img.eqimg{width:100%;height:340px;object-fit:cover;}
 
 /* 標籤 */
 .tags{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
@@ -305,6 +306,49 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
 }
 .timeline .content strong{font-size:22px;color:var(--ink);}
 .timeline .content p{font-size:19px;color:var(--ink-soft);margin-top:2px;}
+
+/* 水平時間軸（研究流程） */
+.htimeline{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  position:relative;margin:30px 0 10px;
+}
+.htimeline::before{
+  content:'';position:absolute;left:12.5%;right:12.5%;
+  top:50px;height:3px;background:var(--blue);opacity:.4;
+}
+.htl-item{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;padding:0 8px;}
+.htl-label{font-size:21px;font-weight:800;color:var(--blue-dark);margin-bottom:14px;}
+.htl-dot{
+  width:26px;height:26px;border-radius:50%;background:var(--blue);
+  border:5px solid var(--cream);box-shadow:0 0 0 3px var(--blue);
+  position:relative;z-index:2;margin-bottom:18px;
+}
+.htl-desc{font-size:19px;color:var(--ink);line-height:1.7;}
+@media(max-width:760px){
+  .htimeline{grid-template-columns:1fr;gap:10px;}
+  .htimeline::before{display:none;}
+  .htl-item{flex-direction:row;gap:16px;text-align:left;background:#fff;border-radius:14px;padding:14px 18px;box-shadow:var(--shadow);}
+  .htl-label{margin:0;min-width:90px;}
+  .htl-dot{display:none;}
+}
+
+/* 時間投入區塊 */
+.invest-row{display:flex;gap:22px;align-items:stretch;}
+.invest-stat{
+  flex:0 0 220px;background:linear-gradient(135deg,var(--teal),var(--teal-dark));
+  border-radius:var(--radius);color:#fff;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:28px 18px;box-shadow:var(--shadow);
+}
+.invest-stat .n{font-size:64px;font-weight:900;line-height:1;}
+.invest-stat .l{font-size:19px;margin-top:8px;text-align:center;opacity:.95;}
+.invest-text{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:8px 4px;
+}
+@media(max-width:760px){
+  .invest-row{flex-direction:column;}
+  .invest-stat{flex:none;}
+}
 
 /* 特殊標記 */
 .badge-special{
@@ -408,6 +452,7 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
     <a onclick="go('pay-prostate')">攝護腺癌</a>
     <a onclick="go('pay-breast')">乳癌</a>
     <a onclick="go('pay-bone')">骨轉移</a>
+    <a onclick="go('pay-thermo')">熱治療</a>
   </div>
   <a data-nav="nutrition" onclick="go('nutrition')"><span class="num">6</span>營養補充、其他</a>
   <div class="sub" data-sub="nutrition">
@@ -1096,8 +1141,8 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
 <!-- ════════════════ ⑤-4 輔助熱治療 ════════════════ -->
 <div class="page" id="page-pay-thermo">
   <div class="page-head">
-    <div class="crumb">主題 ⑤ ｜健保與自費 ▸ 輔助熱治療</div>
-    <h1>輔助熱治療</h1>
+    <div class="crumb">主題 ⑤ ｜健保與自費 ▸ 熱治療</div>
+    <h1>熱治療</h1>
     <p>安可勝 Oncotherm EHY-2030</p>
   </div>
 
@@ -1108,11 +1153,11 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
 
   <div class="two-col" style="align-items:start;">
     <div class="figure" style="margin:0;">
-      <img src="assets/thermo_illust.jpg" alt="熱治療原理示意" onclick="zoom(this)">
+      <img src="assets/thermo_illust.jpg" alt="熱治療原理示意" class="eqimg" onclick="zoom(this)">
       <figcaption>熱治療原理示意</figcaption>
     </div>
     <div class="figure" style="margin:0;">
-      <img src="assets/thermo_room.jpg" alt="亞東醫院熱治療儀（安可勝 EHY-2030）" onclick="zoom(this)">
+      <img src="assets/thermo_room.jpg" alt="亞東醫院熱治療儀（安可勝 EHY-2030）" class="eqimg" onclick="zoom(this)">
       <figcaption>亞東醫院熱治療室（安可勝 EHY-2030）</figcaption>
     </div>
   </div>
@@ -1327,7 +1372,7 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
     <div class="prod-grid">
       <div class="prod-card"><div class="pimg"><img src="assets/mouth2.jpg" alt="必達定漱口水" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">漱口水</span><h4>必達定漱口水</h4><p>消毒殺菌，口腔黏膜炎照護</p></div></div>
       <div class="prod-card"><div class="pimg"><img src="assets/mouth3.jpg" alt="優樂碘漱口水" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">漱口水</span><h4>優樂碘漱口水</h4><p>抑菌防護，口腔黏膜炎照護</p></div></div>
-      <div class="prod-card"><div class="pimg"><img src="assets/mouth4.jpg" alt="吉優適口內噴劑" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">口內噴劑</span><h4>吉優適口內噴劑</h4><p>物理性保護膜，止痛隔絕刺激</p></div></div>
+      <div class="prod-card"><div class="pimg"><img src="assets/mouth4.jpg" alt="吉優適口內噴劑" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">口內噴劑</span><h4>吉優適口內噴劑</h4><p>生成物理性保護膜，止痛隔絕刺激</p></div></div>
     </div>
     <div class="note green" style="margin-top:20px;cursor:pointer;" onclick="go('mouth-study')">
       <span class="ico">🎁</span>
@@ -1355,10 +1400,12 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
       <div class="card" style="border-top:8px solid var(--coral);">
         <h3 style="color:var(--coral);">😣 口腔黏膜炎</h3>
         <p>紅腫、疼痛、潰瘍，就像大面積的「嘴破」</p>
+        <img src="assets/mucositis.jpg" alt="口腔黏膜炎" onclick="zoom(this)" style="width:100%;border-radius:12px;margin-top:12px;cursor:zoom-in;">
       </div>
       <div class="card" style="border-top:8px solid var(--amber);">
         <h3 style="color:var(--amber);">💧 嚴重口乾</h3>
         <p>唾液腺受損、口水變黏，吞嚥與進食困難</p>
+        <img src="assets/drymouth.jpg" alt="嚴重口乾" onclick="zoom(this)" style="width:100%;border-radius:12px;margin-top:12px;cursor:zoom-in;">
       </div>
     </div>
   </section>
@@ -1390,24 +1437,40 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
 
   <section class="block">
     <h2><span class="dot"></span>研究流程：輕鬆配合無負擔</h2>
-    <ul class="timeline">
-      <li><div class="step">1</div><div class="content"><strong>治療前</strong><p>填寫基本資料・口腔狀況評估</p></div></li>
-      <li><div class="step">2</div><div class="content"><strong>治療中</strong><p>每週 1 次評估・填寫簡單問卷</p></div></li>
-      <li><div class="step">3</div><div class="content"><strong>日常照護</strong><p>每日 4 次・每次含漱 30 秒</p></div></li>
-      <li><div class="step">4</div><div class="content"><strong>結束後</strong><p>療程結束 1 週・最後評估</p></div></li>
-    </ul>
+    <div class="htimeline">
+      <div class="htl-item">
+        <div class="htl-label">治療前</div>
+        <div class="htl-dot"></div>
+        <div class="htl-desc">填寫基本資料<br>口腔狀況評估</div>
+      </div>
+      <div class="htl-item">
+        <div class="htl-label">治療中</div>
+        <div class="htl-dot"></div>
+        <div class="htl-desc">每週 1 次評估<br>填寫簡單問卷</div>
+      </div>
+      <div class="htl-item">
+        <div class="htl-label">日常照護</div>
+        <div class="htl-dot"></div>
+        <div class="htl-desc">每日 4 次<br>含漱 30 秒</div>
+      </div>
+      <div class="htl-item">
+        <div class="htl-label">結束後</div>
+        <div class="htl-dot"></div>
+        <div class="htl-desc">療程結束 1 週<br>最後評估</div>
+      </div>
+    </div>
   </section>
 
   <section class="block">
     <h2><span class="dot"></span>您需要的時間投入</h2>
-    <div class="two-col" style="align-items:center;">
-      <div class="stat" style="flex:none;">
+    <div class="invest-row">
+      <div class="invest-stat">
         <div class="n">15</div>
         <div class="l">分鐘 / 每週<br>填寫問卷</div>
       </div>
-      <div class="card" style="margin:0;">
-        <p>包含：生活品質量表、口乾評估、疼痛分數。</p>
-        <p style="color:var(--teal-dark);font-weight:700;margin-top:8px;">您的小努力，將幫助未來更多的病友 🌿</p>
+      <div class="invest-text">
+        <p style="font-size:20px;">包含：生活品質量表、口乾評估、疼痛分數。</p>
+        <p style="color:var(--teal-dark);font-weight:700;font-size:22px;margin-top:10px;">您的小努力，將幫助未來更多的病友 🌿</p>
       </div>
     </div>
     <div class="note amber" style="margin-top:16px;">
