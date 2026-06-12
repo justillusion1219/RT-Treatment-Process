@@ -295,6 +295,17 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
 }
 .fusion-diagram .fd-arrow small{font-size:16px;color:var(--ink-soft);font-weight:700;}
 
+/* 時間軸流程 */
+.timeline{list-style:none;padding:0;margin:6px 0;}
+.timeline li{display:flex;gap:18px;margin-bottom:18px;align-items:flex-start;}
+.timeline .step{
+  width:42px;height:42px;min-width:42px;border-radius:50%;
+  background:var(--teal);color:#fff;display:flex;align-items:center;
+  justify-content:center;font-size:22px;font-weight:800;
+}
+.timeline .content strong{font-size:22px;color:var(--ink);}
+.timeline .content p{font-size:19px;color:var(--ink-soft);margin-top:2px;}
+
 /* 特殊標記 */
 .badge-special{
   display:inline-block;margin-left:12px;
@@ -994,6 +1005,12 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
         <p>傳統 vs 立體定位比較</p>
         <div class="lc-go">查看詳情 →</div>
       </div>
+      <div class="link-card" onclick="go('pay-thermo')">
+        <div class="lc-icon">🔥</div>
+        <h3>輔助熱治療</h3>
+        <p>提高治療敏感度・自費項目</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
     </div>
   </section>
 
@@ -1069,6 +1086,46 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
       </tbody>
     </table>
   </div>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('pay')">← 返回健保與自費</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('pay-thermo')">輔助熱治療 →</button>
+  </div>
+</div>
+
+<!-- ════════════════ ⑤-4 輔助熱治療 ════════════════ -->
+<div class="page" id="page-pay-thermo">
+  <div class="page-head">
+    <div class="crumb">主題 ⑤ ｜健保與自費 ▸ 輔助熱治療</div>
+    <h1>輔助熱治療</h1>
+    <p>安可勝 Oncotherm EHY-2030</p>
+  </div>
+
+  <div class="card" style="border-top:8px solid var(--coral);">
+    <h3 style="color:var(--coral);">🔥 什麼是熱治療？</h3>
+    <p>提高腫瘤對<strong>放射治療、化療、標靶及免疫治療</strong>的敏感度，增加臨床治療效果。屬於<strong>自費項目</strong>。</p>
+  </div>
+
+  <div class="two-col" style="align-items:start;">
+    <div class="figure" style="margin:0;">
+      <img src="assets/thermo_illust.jpg" alt="熱治療原理示意" onclick="zoom(this)">
+      <figcaption>熱治療原理示意</figcaption>
+    </div>
+    <div class="figure" style="margin:0;">
+      <img src="assets/thermo_room.jpg" alt="亞東醫院熱治療儀（安可勝 EHY-2030）" onclick="zoom(this)">
+      <figcaption>亞東醫院熱治療室（安可勝 EHY-2030）</figcaption>
+    </div>
+  </div>
+
+  <div class="note green">
+    <span class="ico">🩺</span>
+    <span><strong>適用病人：</strong>腦瘤・頭頸癌・肺癌・肝癌・大腸直腸癌・乳癌・子宮頸癌・復發及轉移性病灶等</span>
+  </div>
+  <div class="note blue">
+    <span class="ico">⏱️</span>
+    <span><strong>治療頻率：</strong>每週進行 1–2 次，每次治療時間約 60 分鐘</span>
+  </div>
+
   <div class="page-nav">
     <button class="pn-btn" onclick="go('pay')">← 返回健保與自費</button>
     <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
@@ -1268,17 +1325,99 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
   <section class="block" id="nu-mouth">
     <h2><span class="dot"></span>漱口水</h2>
     <div class="prod-grid">
-      <div class="prod-card"><div class="pimg"><img src="assets/mouth2.jpg" alt="漱口水產品2" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">漱口水</span><h4>口腔保健漱口水</h4><p>維持口腔清潔・舒緩不適</p></div></div>
-      <div class="prod-card"><div class="pimg"><img src="assets/mouth3.jpg" alt="漱口水產品3" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">漱口水</span><h4>口腔修護漱口水</h4><p>輔助口腔黏膜照護</p></div></div>
-      <div class="prod-card"><div class="pimg"><img src="assets/mouth4.jpg" alt="漱口水產品4" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">漱口水</span><h4>口腔護理漱口水</h4><p>治療期間口腔保健</p></div></div>
+      <div class="prod-card"><div class="pimg"><img src="assets/mouth2.jpg" alt="必達定漱口水" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">漱口水</span><h4>必達定漱口水</h4><p>消毒殺菌，口腔黏膜炎照護</p></div></div>
+      <div class="prod-card"><div class="pimg"><img src="assets/mouth3.jpg" alt="優樂碘漱口水" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">漱口水</span><h4>優樂碘漱口水</h4><p>抑菌防護，口腔黏膜炎照護</p></div></div>
+      <div class="prod-card"><div class="pimg"><img src="assets/mouth4.jpg" alt="吉優適口內噴劑" onclick="zoom(this)"></div><div class="pbody"><span class="ptype" style="background:var(--blue);">口內噴劑</span><h4>吉優適口內噴劑</h4><p>物理性保護膜，止痛隔絕刺激</p></div></div>
     </div>
-    <div class="note green" style="margin-top:20px;">
+    <div class="note green" style="margin-top:20px;cursor:pointer;" onclick="go('mouth-study')">
       <span class="ico">🎁</span>
-      <span><strong>參與最新研究計畫填寫問卷，治療期間可獲得免費漱口水使用！</strong>詳情請洽門診護理師</span>
+      <span><strong>參與最新研究計畫填寫問卷，治療期間可獲得免費漱口水使用！</strong>　<span style="color:var(--teal-dark);font-weight:700;text-decoration:underline;">點此了解研究計畫 →</span></span>
     </div>
   </section>
   <div class="page-nav">
     <button class="pn-btn" onclick="go('nutrition-dress')">← 皮膚敷料</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('mouth-study')">漱口水研究計畫 →</button>
+  </div>
+</div>
+
+<!-- ════════════════ ⑥ 漱口水研究計畫 ════════════════ -->
+<div class="page" id="page-mouth-study">
+  <div class="page-head">
+    <div class="crumb">主題 ⑥ ｜營養補充、其他 ▸ 漱口水 ▸ 研究計畫</div>
+    <h1>漱口水研究計畫說明</h1>
+    <p>自由參與，可隨時退出</p>
+  </div>
+
+  <section class="block">
+    <h2><span class="dot"></span>頭頸癌放射治療常見副作用</h2>
+    <div class="two-col">
+      <div class="card" style="border-top:8px solid var(--coral);">
+        <h3 style="color:var(--coral);">😣 口腔黏膜炎</h3>
+        <p>紅腫、疼痛、潰瘍，就像大面積的「嘴破」</p>
+      </div>
+      <div class="card" style="border-top:8px solid var(--amber);">
+        <h3 style="color:var(--amber);">💧 嚴重口乾</h3>
+        <p>唾液腺受損、口水變黏，吞嚥與進食困難</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2><span class="dot"></span>使用漱口水的好處</h2>
+    <div class="two-col" style="margin-bottom:16px;">
+      <div class="note green" style="margin:0;"><span class="ico">🦠</span><span>減少口腔細菌滋生</span></div>
+      <div class="note blue" style="margin:0;"><span class="ico">😌</span><span>改善嚴重口乾，降低疼痛</span></div>
+    </div>
+    <div class="three-col">
+      <div class="card" style="text-align:center;">
+        <div style="font-size:46px;">🔬</div>
+        <h3>專業監測</h3>
+        <p style="color:var(--ink-soft);">每週追蹤口腔狀況</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:46px;">🎁</div>
+        <h3>專屬產品</h3>
+        <p style="color:var(--ink-soft);">免費提供受試漱口水</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:46px;">🩺</div>
+        <h3>醫療照護</h3>
+        <p style="color:var(--ink-soft);">若有不適，醫院提供即時照護</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2><span class="dot"></span>研究流程：輕鬆配合無負擔</h2>
+    <ul class="timeline">
+      <li><div class="step">1</div><div class="content"><strong>治療前</strong><p>填寫基本資料・口腔狀況評估</p></div></li>
+      <li><div class="step">2</div><div class="content"><strong>治療中</strong><p>每週 1 次評估・填寫簡單問卷</p></div></li>
+      <li><div class="step">3</div><div class="content"><strong>日常照護</strong><p>每日 4 次・每次含漱 30 秒</p></div></li>
+      <li><div class="step">4</div><div class="content"><strong>結束後</strong><p>療程結束 1 週・最後評估</p></div></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2><span class="dot"></span>您需要的時間投入</h2>
+    <div class="two-col" style="align-items:center;">
+      <div class="stat" style="flex:none;">
+        <div class="n">15</div>
+        <div class="l">分鐘 / 每週<br>填寫問卷</div>
+      </div>
+      <div class="card" style="margin:0;">
+        <p>包含：生活品質量表、口乾評估、疼痛分數。</p>
+        <p style="color:var(--teal-dark);font-weight:700;margin-top:8px;">您的小努力，將幫助未來更多的病友 🌿</p>
+      </div>
+    </div>
+    <div class="note amber" style="margin-top:16px;">
+      <span class="ico">📋</span>
+      <span>本研究<strong>自由參與，可隨時退出</strong>。詳情請洽門診護理師。</span>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('nutrition-mouth')">← 返回漱口水</button>
     <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
   </div>
 </div>
@@ -1293,7 +1432,8 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
 function go(page, anchor){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
   document.getElementById('page-'+page).classList.add('show');
-  const base = page.split('-')[0];
+  let base = page.split('-')[0];
+  if(page==='mouth-study') base = 'nutrition';
   document.querySelectorAll('aside a[data-nav]').forEach(a=>{
     a.classList.toggle('active', a.dataset.nav===base);
   });
