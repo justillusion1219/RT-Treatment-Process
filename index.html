@@ -218,6 +218,8 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
 .fig-row.c3{grid-template-columns:repeat(3,1fr);}
 .fig-row .figure{margin:0;}
 .fig-row .figure img{height:240px;object-fit:cover;}
+.fig-row .figure img.docimg{object-fit:contain;background:#fff;padding:6px;}
+.fig-row.with-doc .figure img{height:320px;}
 .figure img.eqimg{width:100%;height:340px;object-fit:cover;}
 .figure video{width:100%;display:block;aspect-ratio:16/9;background:#000;}
 
@@ -404,6 +406,7 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
   .home-grid{grid-template-columns:1fr;}
   .two-col,.three-col,.se-grid{grid-template-columns:1fr;}
   .fig-row.c2,.fig-row.c3{grid-template-columns:1fr;}
+  .fig-row .figure img.docimg{height:auto;}
   .hero{padding:30px 24px;}
   .hero h1{font-size:34px;}
   .hero .hero-img{max-width:100%;flex-basis:100%;}
@@ -611,9 +614,10 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
         <li>解釋自費項目、護理師衛教</li>
       </ul>
     </div>
-    <div class="fig-row c2">
+    <div class="fig-row c3 with-doc">
       <div class="figure"><img src="assets/consult_dr.jpg" alt="醫師門診說明" onclick="zoom(this)"><figcaption>醫師詳細說明治療計畫</figcaption></div>
       <div class="figure"><img src="assets/consult_desk.jpg" alt="櫃台衛教說明" onclick="zoom(this)"><figcaption>護理師衛教與行政說明</figcaption></div>
+      <div class="figure"><img class="docimg" src="assets/prep_form.jpg" alt="放射線治療準備流程單" onclick="zoom(this)"><figcaption>準備流程單，請於流程中隨身攜帶（點圖可放大）</figcaption></div>
     </div>
   </section>
 
