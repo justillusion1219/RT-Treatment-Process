@@ -457,6 +457,7 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
     <a onclick="go('pay-prostate')">攝護腺癌</a>
     <a onclick="go('pay-breast')">乳癌</a>
     <a onclick="go('pay-bone')">骨轉移</a>
+    <a onclick="go('pay-brain')">腦轉移</a>
     <a onclick="go('pay-thermo')">熱治療</a>
   </div>
   <a data-nav="nutrition" onclick="go('nutrition')"><span class="num">6</span>營養補充、其他</a>
@@ -1051,6 +1052,12 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
         <p>傳統 vs 立體定位比較</p>
         <div class="lc-go">查看詳情 →</div>
       </div>
+      <div class="link-card" onclick="go('pay-brain')">
+        <div class="lc-icon">🧠</div>
+        <h3>腦轉移</h3>
+        <p>傳統分次・海馬迴閃避・SRS 比較</p>
+        <div class="lc-go">查看詳情 →</div>
+      </div>
       <div class="link-card" onclick="go('pay-thermo')">
         <div class="lc-icon">🔥</div>
         <h3>輔助熱治療</h3>
@@ -1135,11 +1142,34 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
   <div class="page-nav">
     <button class="pn-btn" onclick="go('pay')">← 返回健保與自費</button>
     <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
+    <button class="pn-btn" onclick="go('pay-brain')">腦轉移 →</button>
+  </div>
+</div>
+
+<!-- ════════════════ ⑤-4 腦轉移 ════════════════ -->
+<div class="page" id="page-pay-brain">
+  <div class="page-head">
+    <div class="crumb">主題 ⑤ ｜健保與自費 ▸ 腦轉移</div>
+    <h1>腦轉移｜全腦 vs 立體定位</h1>
+  </div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>治療類型</th><th>劑量</th><th>局部控制</th><th>認知功能下降</th></tr></thead>
+      <tbody>
+        <tr><td>傳統分次<br><span class="ok">✅ 健保</span></td><td>25–30 Gy / 10 次</td><td>既有病灶控制較差，減少新生腦轉移</td><td>最明顯</td></tr>
+        <tr><td>海馬迴閃避技術<br><span class="warn">⚠️ 須自費 40000</span></td><td>–</td><td>–</td><td>搭配藥物顯著改善</td></tr>
+        <tr><td>立體定位 SRS<br><span class="ok">✅ 健保</span>（符合條件）<br><span class="warn">⚠️ 須自費 95000</span></td><td>18–30 Gy / 1–5 次</td><td><strong>既有病灶控制最佳，一年控制率 85–95%</strong></td><td>不明顯</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-nav">
+    <button class="pn-btn" onclick="go('pay')">← 返回健保與自費</button>
+    <button class="pn-btn home" onclick="go('home')">🏠 返回首頁</button>
     <button class="pn-btn" onclick="go('pay-thermo')">輔助熱治療 →</button>
   </div>
 </div>
 
-<!-- ════════════════ ⑤-4 輔助熱治療 ════════════════ -->
+<!-- ════════════════ ⑤-5 輔助熱治療 ════════════════ -->
 <div class="page" id="page-pay-thermo">
   <div class="page-head">
     <div class="crumb">主題 ⑤ ｜健保與自費 ▸ 熱治療</div>
@@ -1326,19 +1356,19 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
         </div>
       </div>
       <div class="prod-card">
-        <div class="pimg"><img src="assets/dress6.jpg" alt="貝比欣凝膠" onclick="zoom(this)"></div>
-        <div class="pbody">
-          <span class="ptype">凝膠</span>
-          <h4>貝比欣凝膠 45g</h4>
-          <p>傷口癒合輔佐劑，皮膚滋潤形成保護膜</p>
-        </div>
-      </div>
-      <div class="prod-card">
         <div class="pimg"><img src="assets/dress2.jpg" alt="舒坦麗凝膠膚料" onclick="zoom(this)"></div>
         <div class="pbody">
           <span class="ptype">凝膠</span>
           <h4>舒坦麗凝膠膚料（滅菌）20g</h4>
           <p>保護皮膚避免磨擦・抑菌；滅菌可用於有傷口皮膚</p>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="pimg"><img src="assets/dress4.jpg" alt="NS-21肌膚修護霜" onclick="zoom(this)"></div>
+        <div class="pbody">
+          <span class="ptype">凝膠</span>
+          <h4>NS-21 肌膚修護霜 100g</h4>
+          <p>尿素、尿囊素為皮膚添加天然保護膜，保濕照護修復</p>
         </div>
       </div>
       <div class="prod-card">
@@ -1350,11 +1380,11 @@ table.tbl tr:nth-child(even) td{background:#FBF9F4;}
         </div>
       </div>
       <div class="prod-card">
-        <div class="pimg"><img src="assets/dress4.jpg" alt="NS-21肌膚修護霜" onclick="zoom(this)"></div>
+        <div class="pimg"><img src="assets/dress6.jpg" alt="貝比欣凝膠" onclick="zoom(this)"></div>
         <div class="pbody">
           <span class="ptype">凝膠</span>
-          <h4>NS-21 肌膚修護霜 100g</h4>
-          <p>尿素、尿囊素為皮膚添加天然保護膜，保濕照護修復</p>
+          <h4>貝比欣凝膠 45g</h4>
+          <p>傷口癒合輔佐劑，皮膚滋潤形成保護膜</p>
         </div>
       </div>
     </div>
